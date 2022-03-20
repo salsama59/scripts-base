@@ -8,4 +8,4 @@ do
 done
 
 echo "attempting to create the link name : $destinationLinkName from the file $sourceFilePath"
-sudo ln -sf $sourceFilePath /etc/int.d/$destinationLinkName
+sudo ln -sf $sourceFilePath /etc/init.d/$destinationLinkName
