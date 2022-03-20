@@ -7,14 +7,16 @@ serviceScriptFullPath="/etc/systemd/system/${fileNameWithoutExtension}.service"
 echo "creating the service script : ${serviceScriptFullPath} ..."
 sudo touch "${serviceScriptFullPath}"
 
+executionScript="java -jar $2 ${fullFilePath}"
 echo "Populating the service script file : ${serviceScriptFullPath} ..."
+echo "The following launch script will be played to start the service : $executionScript"
 echo "[Unit]
 Description=$fileNameWithoutExtension service
 After=syslog.target
 
 [Service]
 User=ubuntu
-ExecStart=$fullFilePath
+ExecStart=$executionScript
 SuccessExitStatus=143
 
 [Install]
