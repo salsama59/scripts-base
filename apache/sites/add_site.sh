@@ -10,15 +10,17 @@ configurationFilePath = "/etc/apache/sites-available/$siteConfigurationFileName.
 echo "Calculated configuration file path is : $configurationFilePath"
 
 echo "Creating configuration file $siteConfigurationFileName.conf"
-cat ./site_configuration_template/apache_site_template.conf > $configurationFilePath
+sudo cat ./site_configuration_template/apache_site_template.conf > $configurationFilePath
+
+sudo chmod 644 $configurationFilePath
 
 echo "Attempting to replace {PORT_VALUE} by $port ..."
-sed -i "s/{PORT_VALUE}/$port/" $configurationFilePath
+sudo sed -i "s/{PORT_VALUE}/$port/" $configurationFilePath
 echo "Attempting to replace {SITE_DIRECTORY} by $siteDirectory ..."
-sed -i "s/{SITE_DIRECTORY}/$siteDirectory/" $configurationFilePath
+sudo sed -i "s/{SITE_DIRECTORY}/$siteDirectory/" $configurationFilePath
 echo "Attempting to replace {SITE_SERVER_NAME} by $siteServerName ..."
-sed -i "s/{SITE_SERVER_NAME}/$siteServerName/" $configurationFilePath
+sudo sed -i "s/{SITE_SERVER_NAME}/$siteServerName/" $configurationFilePath
 
 
 echo "Enabling the site ..."
-a2ensite $configurationFilePath
+sudo a2ensite $configurationFilePath
