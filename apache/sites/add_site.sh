@@ -22,5 +22,6 @@ echo "Attempting to replace {SITE_SERVER_NAME} by $siteServerName ..."
 sudo sed -i "s/{SITE_SERVER_NAME}/$siteServerName/" $configurationFilePath
 
 
-echo "Enabling the site ..."
-sudo a2ensite $configurationFilePath
+echo "Enabling the $siteConfigurationFileName site ..."
+cd /etc/apache2/sites-available
+sudo a2ensite "$siteConfigurationFileName.conf"
