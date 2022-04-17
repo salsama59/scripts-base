@@ -1,4 +1,3 @@
-
 echo "Begin site configuration :"
 read -p "Please enter the site port: " port
 read -p "Please enter the site directory: " siteDirectory
@@ -21,7 +20,7 @@ sudo sed -i "s@{SITE_DIRECTORY}@$siteDirectory@" $configurationFilePath
 echo "Attempting to replace {SITE_SERVER_NAME} by $siteServerName ..."
 sudo sed -i "s/{SITE_SERVER_NAME}/$siteServerName/" $configurationFilePath
 
-
 echo "Enabling the $siteConfigurationFileName site ..."
-cd /etc/apache2/sites-available
 sudo a2ensite "$siteConfigurationFileName.conf"
+
+echo "Do not forget to add the new port inside /etc/apache2/ports.conf eg Listen 8081 !!!!!!!!!!"
